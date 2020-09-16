@@ -82,6 +82,8 @@ namespace SOLID_Start
                 movie = new NewReleaseMovie(movie_name);
               
             }
+
+            
             if (movie != null){
                 klant.AddMovie(new Huur(movie, aantalDagen));
                 klanten.Add(klant);
