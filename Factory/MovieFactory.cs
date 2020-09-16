@@ -11,6 +11,8 @@ namespace SOLID_Start.Factory
         public Movie Create(string type, string movie_name)
         {
 
+           
+
             try
             {
                 Movie m= (Movie)Activator.CreateInstance(Type.GetType($"SOLID_Start.Movies.{type}"), new Object[] { movie_name });
@@ -18,7 +20,7 @@ namespace SOLID_Start.Factory
             }
             catch(Exception e)
             {
-                return null;
+                return new NullMovie("null movie");
             }
         }
     }

@@ -81,12 +81,9 @@ namespace SOLID_Start
         {
 
             var movie = movieFactory.Create(type,movie_name);
-
-
-            if (movie != null){
-                klant.AddMovie(new Huur(movie, aantalDagen));
-                klanten.Add(klant);
-            }
+            klant.AddMovie(new Huur(movie, aantalDagen));
+            klanten.Add(klant);
+            
 
         }
 
