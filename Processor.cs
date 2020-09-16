@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using SOLID_Start.Factory;
 using SOLID_Start.Loggen;
+using SOLID_Start.Messaging;
 using SOLID_Start.Movies;
 using SOLID_Start.Persistentie;
 using SOLID_Start.Serialisatie;
@@ -9,6 +10,7 @@ using SOLID_Start.Validatie;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -23,6 +25,7 @@ namespace SOLID_Start
         List<Klant> klanten = new List<Klant>();
         MovieFactory movieFactory;
         KlantValidatie validator;
+        MailMessaging mailMessenger;
 
         public Processor()
         {
@@ -31,6 +34,8 @@ namespace SOLID_Start
             jsonKlantSerializer = new JsonKlantSerializer();
             movieFactory = new MovieFactory();
             validator = new KlantValidatie();
+            mailMessenger = new MailMessaging();
+
         }
 
        
@@ -47,8 +52,7 @@ namespace SOLID_Start
             {
 
                 logger.Log(klant.GetRekening());
-
-                SendComfirmationMessage(klant);
+                mailMessenger.SendComfirmationMessage(klant);
             }
             logger.Log("einde berekening...");
                         
@@ -88,10 +92,6 @@ namespace SOLID_Start
 
        
 
-        private void SendComfirmationMessage(Klant klant)
-        {
-            logger.Log("stuur een mail naar de klant");
-            logger.Log("SENDING MAIL...");
-        }
+      
     }
 }
