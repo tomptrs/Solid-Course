@@ -7,6 +7,8 @@ namespace SOLID_Start
     {
         static void Main(string[] args)
         {
+            //Demo-Application
+
             List<Klant> klanten = new List<Klant>();
             Klant k = new Klant("Peeters");
 
