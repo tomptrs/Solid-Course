@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QvS7vzcs2Hsv9inPYy8tok9piA5mE/8ek5Uh3k90zdwIcgeQKFb3YGy04+fq8TVZpmJC9aMW5Y9juTqCfIRsDQ==",
+  "dgSpecHash": "e5u51Ez5NbyXALlF/82oOyDXO8OsMAeTnV6WGNgj9BdHP+0uFaBr30bNMBkahgN+X2hTqI8Z2i6bhupC07kuKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\tompt\\source\\repos\\Solid-Course\\SOLID-Start\\Solid-Course\\SOLID-Start.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\tompt\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
