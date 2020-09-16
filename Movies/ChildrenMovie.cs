@@ -6,7 +6,7 @@ namespace SOLID_Start
 {
     class ChildrenMovie:Movie
     {
-        public ChildrenMovie(string title, int priceCode):base(title,priceCode)
+        public ChildrenMovie(string title):base(title)
         {
           
         }

@@ -6,7 +6,7 @@ namespace SOLID_Start.Movies
 {
     public class RegularMovie : Movie
     {
-        public RegularMovie(string title, int priceCode) : base(title, priceCode)
+        public RegularMovie(string title) : base(title)
         {
 
 
