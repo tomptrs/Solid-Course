@@ -8,26 +8,18 @@ namespace SOLID_Start.Factory
     class MovieFactory
     {
 
-        public Movie Create(int movieType, string movie_name)
+        public Movie Create(string type, string movie_name)
         {
-            Movie movie = null;
-            if (movieType == 1)
+
+            try
             {
-                movie = new RegularMovie(movie_name);
-
+                Movie m= (Movie)Activator.CreateInstance(Type.GetType($"SOLID_Start.Movies.{type}"), new Object[] { movie_name });
+                return m;
             }
-            if (movieType == 2)
+            catch(Exception e)
             {
-                movie = new ChildrenMovie(movie_name);
-
+                return null;
             }
-            if (movieType == 3)
-            {
-                movie = new NewReleaseMovie(movie_name);
-
-            }
-
-            return movie;
         }
     }
 }

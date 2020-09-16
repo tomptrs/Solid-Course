@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SOLID_Start
+namespace SOLID_Start.Movies
 {
     class ChildrenMovie:Movie
     {

@@ -21,6 +21,7 @@ namespace SOLID_Start
         JsonKlantSerializer jsonKlantSerializer;
         List<Klant> klanten = new List<Klant>();
         MovieFactory movieFactory;
+
         public Processor()
         {
             logger = new Logger();
@@ -33,15 +34,17 @@ namespace SOLID_Start
         public void Process()
         {          
            
-            ProcessKlant(SerializeKlant(ReadFile("peeters")),"The Godfather",1,3);
-            ProcessKlant(SerializeKlant(ReadFile("vandeperre")), "Lion King",2, 2);
-            ProcessKlant(SerializeKlant(ReadFile("verlinden")), "Rundskop", 1, 4);
-            ProcessKlant(SerializeKlant(ReadFile("dams")), "Top Gun", 3,2);          
+            ProcessKlant(SerializeKlant(ReadFile("peeters")),"The Godfather","RegularMovie",3);
+            ProcessKlant(SerializeKlant(ReadFile("vandeperre")), "Lion King","ChildrenMovie", 2);
+            ProcessKlant(SerializeKlant(ReadFile("verlinden")), "Rundskop", "NewReleaseMovie", 4);
+            ProcessKlant(SerializeKlant(ReadFile("dams")), "Top Gun", "RegularMovie",2);          
 
             logger.Log("start berekenen prijs");
             foreach (Klant klant in klanten)
             {
+
                 logger.Log(klant.GetRekening());
+
                 SendComfirmationMessage(klant);
             }
             logger.Log("einde berekening...");
@@ -59,18 +62,18 @@ namespace SOLID_Start
             return jsonKlantSerializer.GetKlantFromJsonString(jsonObject);
         }
 
-        private void ProcessKlant(Klant klant, string movieName, int priceCode, int aantalDagen)
+        private void ProcessKlant(Klant klant, string movieName, string type, int aantalDagen)
         {
             if (Validate(klant))
             {
-                AddMovie(movieName, priceCode, klant, aantalDagen);
+                AddMovie(movieName, type, klant, aantalDagen);
             }
         }
 
-        private void AddMovie(string movie_name,int movieType, Klant klant, int aantalDagen)
+        private void AddMovie(string movie_name,string type, Klant klant, int aantalDagen)
         {
 
-            var movie = movieFactory.Create(movieType, movie_name);
+            var movie = movieFactory.Create(type,movie_name);
 
 
             if (movie != null){
