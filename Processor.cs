@@ -5,6 +5,7 @@ using SOLID_Start.Loggen;
 using SOLID_Start.Movies;
 using SOLID_Start.Persistentie;
 using SOLID_Start.Serialisatie;
+using SOLID_Start.Validatie;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +22,7 @@ namespace SOLID_Start
         JsonKlantSerializer jsonKlantSerializer;
         List<Klant> klanten = new List<Klant>();
         MovieFactory movieFactory;
+        KlantValidatie validator;
 
         public Processor()
         {
@@ -28,6 +30,7 @@ namespace SOLID_Start
             fileKlantSource = new FileKlantSource();
             jsonKlantSerializer = new JsonKlantSerializer();
             movieFactory = new MovieFactory();
+            validator = new KlantValidatie();
         }
 
        
@@ -64,7 +67,7 @@ namespace SOLID_Start
 
         private void ProcessKlant(Klant klant, string movieName, string type, int aantalDagen)
         {
-            if (Validate(klant))
+            if (validator.Validate(klant))
             {
                 AddMovie(movieName, type, klant, aantalDagen);
             }
@@ -83,15 +86,7 @@ namespace SOLID_Start
 
         }
 
-        private bool Validate(Klant klant)
-        {
-            if (String.IsNullOrEmpty(klant.Naam))
-            {
-                logger.Log("Klant moet een naam hebben");
-                return false;
-            }
-            return true;
-        }
+       
 
         private void SendComfirmationMessage(Klant klant)
         {
