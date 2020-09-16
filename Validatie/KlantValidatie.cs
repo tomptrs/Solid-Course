@@ -1,25 +1,38 @@
 ﻿using SOLID_Start.Loggen;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SOLID_Start.Validatie
 {
-    class KlantValidatie
+     class KlantValidator : Validator<Klant>
     {
-        Logger logger;
-        public KlantValidatie()
+        ILogger logger;
+       
+        public KlantValidator( ILogger logger):base(logger)
         {
-            logger = new Logger();
+                  
         }
-        public bool Validate(Klant klant)
+      
+
+
+        public override bool Validate(Klant type)
         {
-            if (String.IsNullOrEmpty(klant.Naam))
+            if (type != null)
             {
-                logger.Log("Klant moet een naam hebben");
+                if (String.IsNullOrEmpty(type.Naam))
+                {
+                    logger.Log("Klant moet een naam hebben");
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                logger.Log("no customer set!");
                 return false;
             }
-            return true;
         }
     }
 }

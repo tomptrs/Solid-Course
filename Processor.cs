@@ -24,18 +24,19 @@ namespace SOLID_Start
         IKlantSerializer klantSerializer;
         List<Klant> klanten = new List<Klant>();
         MovieFactory movieFactory;
-        KlantValidatie validator;
+        Validator<Klant> validator;
         MailMessaging mailMessenger;
 
-        public Processor(ILogger logger, IKlantSource klantSource,IKlantSerializer serializer)
+        public Processor(ILogger logger, IKlantSource klantSource,IKlantSerializer serializer, Validator<Klant> validator)
         {
             this.logger = logger;
             this.fileKlantSource = klantSource;
             this.klantSerializer = serializer;
+            this.validator = validator;
             
            
             movieFactory = new MovieFactory();
-            validator = new KlantValidatie();
+            validator = this.validator;
             mailMessenger = new MailMessaging();
 
         }
