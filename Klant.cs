@@ -6,7 +6,7 @@ namespace SOLID_Start
 {
     class Klant
     {
-        List<Huur> movies = new List<Huur>();
+        public List<Huur> movies = new List<Huur>();
         public string Naam { get; set; }
         public Klant(string naam)
         {
