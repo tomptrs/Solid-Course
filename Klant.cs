@@ -18,6 +18,12 @@ namespace SOLID_Start
             movies.Add(huur);
         }
 
+        public double RekeningVoor(Huur h)
+        {
+            return h.RekeningVoor();
+           
+        }
+
         public string GetRekening()
         {
             double totalAmount = 0;
@@ -26,30 +32,8 @@ namespace SOLID_Start
 
             foreach (Huur h in movies)
             {
-                double thisAmount = 0;
-                switch (h.Movie.PriceCode)
-                {
-                    case Movie.REGULAR:
-                        thisAmount += 2;
-                        if (h.AantalDagen > 2)
-                        {
-                            thisAmount += (h.AantalDagen - 2) * 1.5;
-                        }
-                        break;
 
-                    case Movie.NEW_RELEASE:
-                        thisAmount += h.AantalDagen * 3;
-                        break;
-
-                    case Movie.CHILDREN:
-                        thisAmount += 1.5;
-                        if (h.AantalDagen > 3)
-                        {
-                            thisAmount += ( h.AantalDagen- 3) * 1.2;
-                        }
-                        break;
-                }
-
+                double thisAmount = RekeningVoor(h);
                 //Show figures for this rental 
                 result += "\t" + h.Movie.Title + "\t" + thisAmount.ToString() + "\n";
                 totalAmount += thisAmount;
