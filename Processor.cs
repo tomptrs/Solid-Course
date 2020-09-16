@@ -19,7 +19,7 @@ namespace SOLID_Start
 {
     class Processor
     {
-        Logger logger;
+        ILogger logger;
         FileKlantSource fileKlantSource;
         JsonKlantSerializer jsonKlantSerializer;
         List<Klant> klanten = new List<Klant>();
@@ -27,9 +27,9 @@ namespace SOLID_Start
         KlantValidatie validator;
         MailMessaging mailMessenger;
 
-        public Processor()
+        public Processor(ILogger logger)
         {
-            logger = new Logger();
+            this.logger = logger;
             fileKlantSource = new FileKlantSource();
             jsonKlantSerializer = new JsonKlantSerializer();
             movieFactory = new MovieFactory();

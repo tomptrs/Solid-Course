@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SOLID_Start.Loggen;
+using System;
 using System.Collections.Generic;
 
 namespace SOLID_Start
@@ -8,8 +9,8 @@ namespace SOLID_Start
         static void Main(string[] args)
         {
             //Demo-Application
-
-            Processor processor = new Processor();
+            ILogger logger = new Logger();
+            Processor processor = new Processor(logger);
             processor.Process();
 
             Console.ReadLine();

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SOLID_Start.Loggen
 {
-    class Logger
+    class Logger:ILogger
     {
         public void Log(string message)
         {
