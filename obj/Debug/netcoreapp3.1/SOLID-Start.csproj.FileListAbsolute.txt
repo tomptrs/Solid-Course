@@ -1,0 +1,13 @@
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.exe
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.deps.json
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.runtimeconfig.json
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.runtimeconfig.dev.json
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.dll
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\bin\Debug\netcoreapp3.1\SOLID-Start.pdb
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.csprojAssemblyReference.cache
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.AssemblyInfoInputs.cache
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.AssemblyInfo.cs
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.csproj.CoreCompileInputs.cache
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.dll
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.pdb
+C:\Users\tompt\source\repos\Solid-Course\SOLID-Start\SOLID-Start\obj\Debug\netcoreapp3.1\SOLID-Start.genruntimeconfig.cache
