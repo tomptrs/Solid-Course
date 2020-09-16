@@ -11,6 +11,8 @@ namespace SOLID_Start
 
             Processor processor = new Processor();
             processor.Process();
+
+            Console.ReadLine();
         }
     }
 }
