@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using SOLID_Start.Loggen;
 using SOLID_Start.Persistentie;
+using SOLID_Start.Serialisatie;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,23 +15,29 @@ namespace SOLID_Start
     {
         Logger logger;
         FileKlantSource fileKlantSource;
+        JsonKlantSerializer jsonKlantSerializer;
         public Processor()
         {
             logger = new Logger();
             fileKlantSource = new FileKlantSource();
+            jsonKlantSerializer = new JsonKlantSerializer();
         }
         public void Process()
         {
             List<Klant> klanten = new List<Klant>();
 
             string json = fileKlantSource.GetKlantFromFile("peeters");
-            var peeters = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
-            if(String.IsNullOrEmpty(peeters.Naam))
+            var peeters = jsonKlantSerializer.GetKlantFromJsonString(json);
+
+            if (String.IsNullOrEmpty(peeters.Naam))
             {
                 logger.Log("Klant moet een naam hebben");
-            }           
-            peeters.AddMovie(new Huur(new Movie("Godfather", 1), 3));
-            klanten.Add(peeters);
+            }
+            else
+            {
+                peeters.AddMovie(new Huur(new Movie("Godfather", 1), 3));
+                klanten.Add(peeters);
+            }
 
              json = fileKlantSource.GetKlantFromFile("vandeperre");
             var vandeperre = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
@@ -38,8 +45,11 @@ namespace SOLID_Start
             {
                 logger.Log("Klant moet een naam hebben");
             }
-            vandeperre.AddMovie(new Huur(new Movie("Lion King", 2), 2));
-            klanten.Add(vandeperre);
+            else
+            {
+                vandeperre.AddMovie(new Huur(new Movie("Lion King", 2), 2));
+                klanten.Add(vandeperre);
+            }
 
 
 
@@ -49,8 +59,11 @@ namespace SOLID_Start
             {
                 logger.Log("Klant moet een naam hebben");
             }
-            verlinden.AddMovie(new Huur(new Movie("Rundskop", 1), 4));
-            klanten.Add(verlinden);
+            else
+            {
+                verlinden.AddMovie(new Huur(new Movie("Rundskop", 1), 4));
+                klanten.Add(verlinden);
+            }
 
 
 
@@ -60,8 +73,11 @@ namespace SOLID_Start
             {
                 logger.Log("Klant moet een naam hebben");
             }
-            dams.AddMovie(new Huur(new Movie("Top Gun", 3), 1));
-            klanten.Add(dams);
+            else
+            {
+                dams.AddMovie(new Huur(new Movie("Top Gun", 3), 1));
+                klanten.Add(dams);
+            }
 
             logger.Log("start berekenen prijs");
             foreach (Klant klant in klanten)
