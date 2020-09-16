@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using SOLID_Start.Loggen;
+using SOLID_Start.Persistentie;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,15 +13,17 @@ namespace SOLID_Start
     class Processor
     {
         Logger logger;
+        FileKlantSource fileKlantSource;
         public Processor()
         {
             logger = new Logger();
+            fileKlantSource = new FileKlantSource();
         }
         public void Process()
         {
             List<Klant> klanten = new List<Klant>();
 
-            string json = File.ReadAllText("./peeters.json"); 
+            string json = fileKlantSource.GetKlantFromFile("peeters");
             var peeters = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
             if(String.IsNullOrEmpty(peeters.Naam))
             {
@@ -29,7 +32,7 @@ namespace SOLID_Start
             peeters.AddMovie(new Huur(new Movie("Godfather", 1), 3));
             klanten.Add(peeters);
 
-            json = File.ReadAllText("./vandeperre.json");
+             json = fileKlantSource.GetKlantFromFile("vandeperre");
             var vandeperre = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
             if (String.IsNullOrEmpty(vandeperre.Naam))
             {
@@ -39,7 +42,8 @@ namespace SOLID_Start
             klanten.Add(vandeperre);
 
 
-            json = File.ReadAllText("./verlinden.json");
+
+            json = fileKlantSource.GetKlantFromFile("verlinden");
             var verlinden = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
             if (String.IsNullOrEmpty(verlinden.Naam))
             {
@@ -49,7 +53,8 @@ namespace SOLID_Start
             klanten.Add(verlinden);
 
 
-            json = File.ReadAllText("./dams.json");
+
+            json = fileKlantSource.GetKlantFromFile("dams");
             var dams = JsonConvert.DeserializeObject<Klant>(json, new StringEnumConverter());
             if (String.IsNullOrEmpty(dams.Naam))
             {
