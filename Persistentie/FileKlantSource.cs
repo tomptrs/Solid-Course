@@ -5,10 +5,11 @@ using System.Text;
 
 namespace SOLID_Start.Persistentie
 {
-    class FileKlantSource
+    class FileKlantSource:IKlantSource
     {
 
-        public string GetKlantFromFile(string klant)
+
+        public string GetKlantFromSource(string klant)
         {
             return File.ReadAllText($"{klant}.json");
         }

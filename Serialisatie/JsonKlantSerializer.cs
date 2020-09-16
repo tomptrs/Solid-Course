@@ -6,9 +6,11 @@ using System.Text;
 
 namespace SOLID_Start.Serialisatie
 {
-    class JsonKlantSerializer
+    class JsonKlantSerializer:IKlantSerializer
     {
-        public Klant GetKlantFromJsonString(string jsonString)
+       
+
+        public Klant GetSerializedKlant(string jsonString)
         {
             return JsonConvert.DeserializeObject<Klant>(jsonString, new StringEnumConverter());
         }

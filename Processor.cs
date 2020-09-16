@@ -20,18 +20,20 @@ namespace SOLID_Start
     class Processor
     {
         ILogger logger;
-        FileKlantSource fileKlantSource;
-        JsonKlantSerializer jsonKlantSerializer;
+        IKlantSource fileKlantSource;
+        IKlantSerializer klantSerializer;
         List<Klant> klanten = new List<Klant>();
         MovieFactory movieFactory;
         KlantValidatie validator;
         MailMessaging mailMessenger;
 
-        public Processor(ILogger logger)
+        public Processor(ILogger logger, IKlantSource klantSource,IKlantSerializer serializer)
         {
             this.logger = logger;
-            fileKlantSource = new FileKlantSource();
-            jsonKlantSerializer = new JsonKlantSerializer();
+            this.fileKlantSource = klantSource;
+            this.klantSerializer = serializer;
+            
+           
             movieFactory = new MovieFactory();
             validator = new KlantValidatie();
             mailMessenger = new MailMessaging();
@@ -60,13 +62,13 @@ namespace SOLID_Start
 
         private string ReadFile(string klant_naam)
         {
-            string json = fileKlantSource.GetKlantFromFile(klant_naam);
+            string json = fileKlantSource.GetKlantFromSource(klant_naam);
             return json;
         }
 
         private Klant SerializeKlant(string jsonObject)
         {
-            return jsonKlantSerializer.GetKlantFromJsonString(jsonObject);
+            return klantSerializer.GetSerializedKlant(jsonObject);
         }
 
         private void ProcessKlant(Klant klant, string movieName, string type, int aantalDagen)

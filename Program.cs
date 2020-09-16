@@ -1,4 +1,6 @@
 ﻿using SOLID_Start.Loggen;
+using SOLID_Start.Persistentie;
+using SOLID_Start.Serialisatie;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +12,9 @@ namespace SOLID_Start
         {
             //Demo-Application
             ILogger logger = new Logger();
-            Processor processor = new Processor(logger);
+            IKlantSource source = new FileKlantSource();
+            IKlantSerializer serializer = new JsonKlantSerializer();
+            Processor processor = new Processor(logger,source, serializer);
             processor.Process();
 
             Console.ReadLine();
