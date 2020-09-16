@@ -32,11 +32,10 @@ namespace SOLID_Start
             this.logger = logger;
             this.fileKlantSource = klantSource;
             this.klantSerializer = serializer;
-            this.validator = validator;
-            
+            this.validator = validator;           
            
             movieFactory = new MovieFactory();
-            validator = this.validator;
+         
             mailMessenger = new MailMessaging();
 
         }
@@ -45,10 +44,10 @@ namespace SOLID_Start
         public void Process()
         {          
            
-            ProcessKlant(SerializeKlant(ReadFile("peeters")),"The Godfather","RegularMovie",3);
-            ProcessKlant(SerializeKlant(ReadFile("vandeperre")), "Lion King","ChildrenMovie", 2);
-            ProcessKlant(SerializeKlant(ReadFile("verlinden")), "Rundskop", "NewReleaseMovie", 4);
-            ProcessKlant(SerializeKlant(ReadFile("dams")), "Top Gun", "RegularMovie",2);          
+            ProcessKlant(SerializeKlant(ReadFile("peeters")),"The Godfather","Regular",3);
+            ProcessKlant(SerializeKlant(ReadFile("vandeperre")), "Lion King","Children", 2);
+            ProcessKlant(SerializeKlant(ReadFile("verlinden")), "Rundskop", "NewRelease", 4);
+            ProcessKlant(SerializeKlant(ReadFile("dams")), "Top Gun", "Regular",2);          
 
             logger.Log("start berekenen prijs");
             foreach (Klant klant in klanten)
@@ -83,7 +82,11 @@ namespace SOLID_Start
         private void AddMovie(string movie_name,string type, Klant klant, int aantalDagen)
         {
 
-            var movie = movieFactory.Create(type,movie_name);
+            var movie = new Movie(movie_name);//movieFactory.Create(type,movie_name);1
+           
+            PrijsFactory factory = new PrijsFactory();
+            movie.Prijs = factory.Create(type);
+
             klant.AddMovie(new Huur(movie, aantalDagen));
             klanten.Add(klant);
             

@@ -13,10 +13,6 @@ namespace SOLID_Start.Movies
             logger = new Logger();
         }
 
-        public override double RekeningVoor(int AantalDagen)
-        {
-            logger.Log("unknown movie type");
-            return 0;
-        }
+      
     }
 }

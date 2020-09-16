@@ -11,16 +11,6 @@ namespace SOLID_Start.Movies
 
 
         }
-        public override double RekeningVoor(int AantalDagen)
-        {
-            double thisAmount = 0;
-            
-                    thisAmount += 2;
-                    if (AantalDagen > 2)
-                    {
-                        thisAmount += (AantalDagen - 2) * 1.5;
-                    }
-            return thisAmount;
-        }
+       
     }
 }
