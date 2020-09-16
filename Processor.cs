@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using SOLID_Start.Factory;
 using SOLID_Start.Loggen;
 using SOLID_Start.Movies;
 using SOLID_Start.Persistentie;
@@ -19,11 +20,13 @@ namespace SOLID_Start
         FileKlantSource fileKlantSource;
         JsonKlantSerializer jsonKlantSerializer;
         List<Klant> klanten = new List<Klant>();
+        MovieFactory movieFactory;
         public Processor()
         {
             logger = new Logger();
             fileKlantSource = new FileKlantSource();
             jsonKlantSerializer = new JsonKlantSerializer();
+            movieFactory = new MovieFactory();
         }
 
        
@@ -66,24 +69,10 @@ namespace SOLID_Start
 
         private void AddMovie(string movie_name,int movieType, Klant klant, int aantalDagen)
         {
-            Movie movie=null;
-            if(movieType == 1)
-            {
-                movie = new RegularMovie(movie_name);
-              
-            }
-            if (movieType == 2)
-            {
-                movie = new ChildrenMovie(movie_name);
-                
-            }
-            if (movieType == 3)
-            {
-                movie = new NewReleaseMovie(movie_name);
-              
-            }
 
-            
+            var movie = movieFactory.Create(movieType, movie_name);
+
+
             if (movie != null){
                 klant.AddMovie(new Huur(movie, aantalDagen));
                 klanten.Add(klant);
